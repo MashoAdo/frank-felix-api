@@ -5,9 +5,15 @@ export default class extends BaseSchema {
     if (!(await this.schema.hasTable("user"))) {
       this.schema.createTable("user", (table) => {
         table.increments("id").primary();
-        table.string("phone_number").notNullable().unsigned().unique().index();
-        table.string("first_name").notNullable();
-        table.string("last_name").notNullable();
+        table
+          .string("phone_number", 20)
+          .notNullable()
+          .unsigned()
+          .unique()
+          .index();
+        table.string("first_name", 255).notNullable();
+        table.string("last_name", 255).notNullable();
+        table.string("password_hash");
         table.timestamps();
       });
     }
@@ -15,12 +21,10 @@ export default class extends BaseSchema {
     if (!(await this.schema.hasTable("user_session"))) {
       this.schema.createTable("user_session", (table) => {
         table.increments("id").primary();
-        table
-          .integer("user_id")
-          .notNullable()
-          .references("phone_number")
-          .inTable("user");
-        table.string("session_toke");
+        table.integer("user_id").notNullable().references("id").inTable("user");
+        table.string("session_token");
+        table.string("user_agent").nullable();
+        table.string("ip_address").nullable();
         table.dateTime("expires_at", { useTz: true });
         table.timestamps();
       });
