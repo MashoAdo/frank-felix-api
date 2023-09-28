@@ -1,4 +1,5 @@
 import { SuccessCodes } from "App/Core/Constants/SuccessCodes";
+import SignInTask from "App/Tasks/SignInTask";
 import SignUpTask from "App/Tasks/SignUpTask";
 import SignInValidator from "App/Validators/SignInValidator";
 import SignUpValidator from "App/Validators/SignUpValidator";
@@ -11,7 +12,7 @@ export default class UsersController {
       success: true,
       success_code: SuccessCodes.SIGN_IN,
       success_message: "You have successfully logged in",
-      data: await new SignUpTask().run(payload),
+      data: await new SignInTask().run(payload),
     };
   }
 
