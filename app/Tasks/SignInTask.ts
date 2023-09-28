@@ -3,7 +3,7 @@ import AuthenticateTask from "./AuthenticateTask";
 import User from "App/Models/User";
 import Hash from "@ioc:Adonis/Core/Hash";
 
-export default class SignIn implements TaskInterface {
+export default class SignInTask implements TaskInterface {
   public async run(signInPayload: SignInInterface) {
     const { phone_number, password } = signInPayload;
 
