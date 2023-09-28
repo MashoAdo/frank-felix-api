@@ -3,8 +3,9 @@ import { DateTime } from "luxon";
 import Encryption from "@ioc:Adonis/Core/Encryption";
 import { TaskInterface } from "App/Types/Interfaces";
 import GenerateTokenTask from "./GenerateTokenTask";
-import { __getClientInfo } from "App/Core/Helpers/__getClientInfo";
 import UserSession from "App/Models/UserSession";
+import { __getClientInfo } from "App/Core/Helpers/AuthHelper";
+import { HttpContext } from "@adonisjs/core/build/standalone";
 
 export default class AuthenticateTask implements TaskInterface {
   public async run(user) {
@@ -22,6 +23,22 @@ export default class AuthenticateTask implements TaskInterface {
       ip_address: clientInfo?.ip_address,
     });
 
-    return Encryption.encrypt(token);
+    const encrypt_token = Encryption.encrypt(token);
+
+    // Set the cookie in the response
+    const ctx = HttpContext.get();
+
+    if (ctx) {
+      ctx.response.cookie("session", encrypt_token, {
+        httpOnly: true,
+        sameSite: "strict",
+        secure: true,
+        maxAge: Constants.SESSION_LIFETIME,
+        path: "/",
+        // domain: "example.com",//TODO: add domain URL
+      });
+    }
+
+    return encrypt_token;
   }
 }
