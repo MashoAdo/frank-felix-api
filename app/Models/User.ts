@@ -15,7 +15,7 @@ export default class User extends BaseModel {
   public last_name: string;
 
   @column()
-  public phone_number: string;
+  public phone_number: number;
 
   @column({ serializeAs: null })
   public password_hash: string;

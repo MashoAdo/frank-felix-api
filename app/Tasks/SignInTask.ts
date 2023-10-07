@@ -9,7 +9,7 @@ export default class SignInTask implements TaskInterface {
 
     const user = await User.query()
       .where("phone_number", phone_number)
-      .select("password_hash", "name", "email", "phone_number", "id")
+      .select("id", "first_name", "last_name", "password_hash", "phone_number")
       .first();
 
     if (!user) {
@@ -20,12 +20,10 @@ export default class SignInTask implements TaskInterface {
 
     if (!(await Hash.verify(user.password_hash, password))) {
       //handle password don't match
+      throw new Error("Incorrect password please enter the correct password");
     }
-    const token = await new AuthenticateTask().run(user);
+    const session_token = await new AuthenticateTask().run(user.id);
 
-    return {
-      user,
-      token,
-    };
+    return { session_token, user };
   }
 }

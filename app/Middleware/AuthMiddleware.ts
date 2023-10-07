@@ -4,6 +4,7 @@ import UserSession from "App/Models/UserSession";
 
 export default class AuthMiddleware {
   public async handle(next: () => Promise<void>) {
+    // Auth session verifies user session exists or throws a 401
     const user_session = await __getAuthSession();
 
     const remaining_minutes = user_session?.expires_at.diffNow().as("minutes")!;
