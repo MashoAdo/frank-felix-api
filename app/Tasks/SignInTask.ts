@@ -1,10 +1,10 @@
-import { SignInInterface, TaskInterface } from "App/Types/Interfaces";
+import { ISignIn, TaskInterface } from "App/Types/Interfaces";
 import AuthenticateTask from "./AuthenticateTask";
 import User from "App/Models/User";
 import Hash from "@ioc:Adonis/Core/Hash";
 
 export default class SignInTask implements TaskInterface {
-  public async run(signInPayload: SignInInterface) {
+  public async run(signInPayload: ISignIn) {
     const { phone_number, password } = signInPayload;
 
     const user = await User.query()

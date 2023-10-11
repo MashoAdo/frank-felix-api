@@ -1,11 +1,11 @@
-import { SignUpInterface, TaskInterface } from "App/Types/Interfaces";
+import { ISignUp, TaskInterface } from "App/Types/Interfaces";
 import Hash from "@ioc:Adonis/Core/Hash";
 import Logger from "@ioc:Adonis/Core/Logger";
 import User from "App/Models/User";
 import AuthenticateTask from "./AuthenticateTask";
 
 export default class SignUpTask implements TaskInterface {
-  public async run(sign_up_info: SignUpInterface) {
+  public async run(sign_up_info: ISignUp) {
     try {
       const phone_number_exists = await User.query()
         .where("phone_number", sign_up_info.phone_number)
