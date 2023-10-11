@@ -43,8 +43,12 @@ export default class extends BaseSchema {
         table.increments("id").primary();
         table.double("sale_price").unsigned().notNullable();
         table.integer("available_qty").notNullable();
-        table.string("color").notNullable();
-        table.string("img_url").nullable();
+        table
+          .integer("color_id")
+          .notNullable()
+          .references("id")
+          .inTable("product_color");
+        table.string("image_url").nullable();
         table.integer("product_id").references("id").inTable("product");
         table.timestamps();
       });
@@ -80,7 +84,7 @@ export default class extends BaseSchema {
       });
     }
 
-    if (!(await this.schema.hasTable("color"))) {
+    if (!(await this.schema.hasTable("product_color"))) {
       this.schema.createTable("product_color", (table) => {
         table.increments("id").primary();
         table.string("name", 255).notNullable();
