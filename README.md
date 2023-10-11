@@ -13,3 +13,4 @@
         - Catching unhandled errors
         - Reference video <youtube.com/watch?v=vAH4GRWbAQw>
         - TODO: Handle error from code - reference impala
+        - log all errors to sentry or other logging service
