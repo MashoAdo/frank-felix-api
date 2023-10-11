@@ -3,10 +3,9 @@ import { TaskInterface } from "App/Types/Interfaces";
 
 export default class viewProductTask implements TaskInterface {
   public async run(product_id: number) {
-    const product = Product.find(product_id);
+    const product = await Product.find(product_id);
 
     if (!product) {
-      //TODO: throw from code
       throw new Error("Product doesn't exist");
     }
 
