@@ -79,5 +79,13 @@ export default class extends BaseSchema {
         table.timestamps();
       });
     }
+
+    if (!(await this.schema.hasTable("color"))) {
+      this.schema.createTable("product_color", (table) => {
+        table.increments("id").primary();
+        table.string("name", 255).notNullable();
+        table.timestamps();
+      });
+    }
   }
 }
