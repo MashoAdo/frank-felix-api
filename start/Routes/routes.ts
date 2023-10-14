@@ -15,3 +15,6 @@ import "./product-offers/ApiCreateProductOffer.v1";
 import "./product-offers/ApiViewProductOffer.v1";
 import "./product-offers/ApiUpdateProductOffer.v1";
 import "./product-offers/ApiDeleteProductOffer.v1";
+
+//Inventory Trail
+import "./inventory-trail/ApiCreateInventoryTrail.v1";

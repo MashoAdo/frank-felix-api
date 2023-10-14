@@ -25,3 +25,10 @@ export interface IProductOffer {
 export interface IUpdateProductOffer extends Partial<IProductOffer> {
   product_offer_id: number;
 }
+
+export interface IInventoryTrail {
+  product_offer_id: number;
+  qty: number;
+  notes: string;
+  stock_movement: "In" | "Out";
+}

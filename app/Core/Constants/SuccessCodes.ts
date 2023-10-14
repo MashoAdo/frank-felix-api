@@ -16,4 +16,11 @@ export class SuccessCodes {
   public static readonly CREATE_PRODUCT_OFFER = 3002;
   public static readonly UPDATE_PRODUCT_OFFER = 3003;
   public static readonly DELETE_PRODUCT_OFFER = 3004;
+
+  //Inventory Trail
+  public static readonly LIST_INVENTORY_TRAIL = 4000;
+  public static readonly VIEW_INVENTORY_TRAIL = 4001;
+  public static readonly CREATE_INVENTORY_TRAIL = 4002;
+  public static readonly UPDATE_INVENTORY_TRAIL = 4003;
+  public static readonly DELETE_INVENTORY_TRAIL = 4004;
 }
