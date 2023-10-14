@@ -2,7 +2,8 @@
 
     -Verify Auth, expiry, session token, cookie ,etc, - done
     -Model schema with colors in mind - done
-    - finish up on crud api for product and product offers
+    -Finish up on crud api for product and product offers
+    -when updating offer qty ,add new qty value to existing value
 
 ## TTL
 
@@ -14,3 +15,6 @@
         - Reference video <youtube.com/watch?v=vAH4GRWbAQw>
         - TODO: Handle error from code - reference impala
         - log all errors to sentry or other logging service
+    -Db connection pools
+        -Fundamentals
+        -Why transactions need several connection pools
