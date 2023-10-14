@@ -63,7 +63,12 @@ export default class extends BaseSchema {
           .inTable("product_offer")
           .notNullable();
         table.integer("qty").unsigned().notNullable();
-        table.enum("trail_direction", ["In,Out"]);
+        table
+          .enum("stock_movement", ["In", "Out"])
+          .comment(
+            "States whether the inventory is moving in or out of the store"
+          );
+        table.string("notes").nullable();
         table.timestamps();
       });
     }
