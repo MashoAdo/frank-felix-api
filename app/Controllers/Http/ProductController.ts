@@ -4,7 +4,7 @@ import DeleteProductTask from "App/Tasks/DeleteProductTask";
 import ListProductsTask from "App/Tasks/ListProductsTask";
 import UpdateProductTask from "App/Tasks/UpdateProductTask";
 import ViewProductTask from "App/Tasks/ViewProductTask";
-import CreateProductValidator from "App/Validators/createProductValidator";
+import CreateProductValidator from "App/Validators/CreateProductValidator";
 
 export default class ProductController {
   public async listProducts() {
