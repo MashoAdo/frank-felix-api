@@ -18,7 +18,7 @@ export default class ProductOfferController {
   }
 
   public async viewProductOffer({ request }) {
-    const product_offer_id = request.routeParams.product_offer_id;
+    const { product_offer_id } = request.params();
 
     return {
       success: true,
@@ -41,7 +41,7 @@ export default class ProductOfferController {
 
   public async updateProductOffer({ request }) {
     const payload = await request.validate(UpdateProductOfferValidator);
-    const product_offer_id = request.routeParams.product_offer_id;
+    const { product_offer_id } = request.params();
 
     await new UpdateProductOfferTask().run({
       ...payload,
@@ -56,7 +56,7 @@ export default class ProductOfferController {
   }
 
   public async deleteProductOffer({ request }) {
-    const product_offer_id = request.routeParams.product_offer_id;
+    const { product_offer_id } = request.params();
 
     await new DeleteProductOfferTask().run(product_offer_id);
 

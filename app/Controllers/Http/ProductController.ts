@@ -17,7 +17,7 @@ export default class ProductController {
   }
 
   public async viewProduct({ request }) {
-    const product_id = request.routeParams.product_id;
+    const { product_id } = request.params();
 
     return {
       success: true,
@@ -40,7 +40,7 @@ export default class ProductController {
 
   public async updateProduct({ request }) {
     const payload = await request.validate(CreateProductValidator);
-    const product_id = request.routeParams.product_id;
+    const { product_id } = request.params();
 
     await new UpdateProductTask().run(payload.name, product_id);
 
@@ -52,7 +52,7 @@ export default class ProductController {
   }
 
   public async deleteProduct({ request }) {
-    const product_id = request.routeParams.product_id;
+    const { product_id } = request.params();
 
     await new DeleteProductTask().run(product_id);
 
