@@ -30,5 +30,23 @@ export interface IInventoryTrail {
   product_offer_id: number;
   qty: number;
   notes: string;
-  stock_movement: "In" | "Out";
+  stock_movement: TStockMovement;
 }
+
+export interface IInventoryTrailQueryParams {
+  page: number;
+  start_date: string;
+  end_date: string;
+  min_qty: number;
+  max_qty: number;
+  stock_movement: TStockMovement;
+  product_offer_id: number;
+  product_name: string;
+}
+
+export interface IUpdateInventoryTrail extends Partial<IInventoryTrail> {
+  inventory_id: number;
+  product_offer_id: number;
+}
+
+export type TStockMovement = "In" | "Out";
