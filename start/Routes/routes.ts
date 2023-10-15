@@ -17,4 +17,8 @@ import "./product-offers/ApiUpdateProductOffer.v1";
 import "./product-offers/ApiDeleteProductOffer.v1";
 
 //Inventory Trail
+import "./inventory-trail/ApiListInventoryTrail.v1";
+import "./inventory-trail/ApiViewInventoryTrail.v1";
 import "./inventory-trail/ApiCreateInventoryTrail.v1";
+import "./inventory-trail/ApiUpdateInventoryTrail.v1";
+import "./inventory-trail/ApiDeleteInventoryTrail.v1";
