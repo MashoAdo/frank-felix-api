@@ -1,5 +1,6 @@
 import { DateTime } from "luxon";
 import { BaseModel, column } from "@ioc:Adonis/Lucid/Orm";
+import { TStockMovement } from "App/Types/Interfaces";
 
 export default class InventoryTrail extends BaseModel {
   public static table = "inventory_trail";
@@ -14,7 +15,7 @@ export default class InventoryTrail extends BaseModel {
   public qty: number;
 
   @column()
-  public stock_movement: "In" | "Out";
+  public stock_movement: TStockMovement;
 
   @column()
   public notes: string;
