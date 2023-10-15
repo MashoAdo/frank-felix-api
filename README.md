@@ -18,3 +18,7 @@
     -Db connection pools
         -Fundamentals
         -Why transactions need several connection pools
+    -Adonis Logger
+        -Effective Logging
+        -Logging with Adonis
+    -SQL order - .from .join .where* .select .groupBy .orderBy .paginate
