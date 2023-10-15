@@ -1,8 +1,25 @@
 import { SuccessCodes } from "App/Core/Constants/SuccessCodes";
 import CreateInventoryTrailTask from "App/Tasks/CreateInventoryTrailTask";
+import ListInventoryTrailTask from "App/Tasks/ListInventoryTask";
+import UpdateInventoryTask from "App/Tasks/UpdateInventoryTask";
 import CreateInventoryTrailValidator from "App/Validators/CreateInventoryTrailValidator";
+import UpdateInventoryTrailValidator from "App/Validators/UpdateInventoryValidator";
 
 export default class InventoryTrailController {
+  /**
+   * listInventoryTrail
+   */
+
+  public async listInventoryTrail({ request }) {
+    const query = request.qs();
+    return {
+      success: true,
+      success_code: SuccessCodes.LIST_INVENTORY_TRAIL,
+      success_message: "Inventory list",
+      data: await new ListInventoryTrailTask().run(query),
+    };
+  }
+
   /**
    * createInventoryTrail
    */
@@ -15,6 +32,19 @@ export default class InventoryTrailController {
       success: true,
       success_code: SuccessCodes.CREATE_INVENTORY_TRAIL,
       success_message: "Product movement successfully recorded",
+    };
+  }
+
+  public async updateInventoryTrail({ request }) {
+    const payload = await request.validate(UpdateInventoryTrailValidator);
+    const { inventory_id } = request.params();
+
+    await new UpdateInventoryTask().run({ ...payload, inventory_id });
+
+    return {
+      success: true,
+      success_code: SuccessCodes.CREATE_INVENTORY_TRAIL,
+      success_message: "Inventory  movement was successfully updated",
     };
   }
 }
