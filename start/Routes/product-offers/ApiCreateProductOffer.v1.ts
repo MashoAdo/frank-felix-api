@@ -29,4 +29,6 @@ import ProductOfferController from "App/Controllers/Http/ProductOfferController"
 
 Route.post("/api/v1/product-offers/create", (ctx) =>
   new ProductOfferController().createProductOffer(ctx)
-).as("create.product.offer");
+)
+  .as("create.product.offer")
+  .middleware(["sessionAuth"]);

@@ -28,4 +28,6 @@ import InventoryTrailController from "App/Controllers/Http/InventoryTrailControl
 
 Route.post("/api/v1/inventory/create", (ctx) =>
   new InventoryTrailController().createInventoryTrail(ctx)
-).as("create.inventory.trail");
+)
+  .as("create.inventory.trail")
+  .middleware(["sessionAuth"]);

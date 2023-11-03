@@ -25,4 +25,6 @@ import ProductController from "App/Controllers/Http/ProductController";
 
 Route.post("/api/v1/products/create", (ctx) =>
   new ProductController().createProduct(ctx)
-).as("create.product");
+)
+  .as("create.product")
+  .middleware(["sessionAuth"]);

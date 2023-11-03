@@ -22,4 +22,6 @@ import ProductController from "App/Controllers/Http/ProductController";
 
 Route.post("/api/v1/products/:product_id/delete", (ctx) =>
   new ProductController().deleteProduct(ctx)
-).as("delete.product");
+)
+  .as("delete.product")
+  .middleware(["sessionAuth"]);

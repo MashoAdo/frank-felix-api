@@ -22,4 +22,6 @@ import ProductOfferController from "App/Controllers/Http/ProductOfferController"
 
 Route.get("/api/v1/product-offers/:product_offer_id", (ctx) =>
   new ProductOfferController().viewProductOffer(ctx)
-).as("view.product.offer");
+)
+  .as("view.product.offer")
+  .middleware(["sessionAuth"]);

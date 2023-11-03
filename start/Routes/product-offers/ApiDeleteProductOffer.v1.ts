@@ -26,4 +26,6 @@ import ProductOfferController from "App/Controllers/Http/ProductOfferController"
 
 Route.post("/api/v1/product-offers/:product_offer_id/delete", (ctx) =>
   new ProductOfferController().deleteProductOffer(ctx)
-).as("delete.product.offer");
+)
+  .as("delete.product.offer")
+  .middleware(["sessionAuth"]);

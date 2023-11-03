@@ -29,4 +29,6 @@ import ProductOfferController from "App/Controllers/Http/ProductOfferController"
 
 Route.post("/api/v1/product-offers/:product_offer_id/update", (ctx) =>
   new ProductOfferController().updateProductOffer(ctx)
-).as("update.product.offer");
+)
+  .as("update.product.offer")
+  .middleware(["sessionAuth"]);

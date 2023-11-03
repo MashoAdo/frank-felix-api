@@ -22,4 +22,6 @@ import ProductController from "App/Controllers/Http/ProductController";
 
 Route.get("/api/v1/products/:product_id", (ctx) =>
   new ProductController().viewProduct(ctx)
-).as("view.product");
+)
+  .as("view.product")
+  .middleware(["sessionAuth"]);

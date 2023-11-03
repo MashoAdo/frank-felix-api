@@ -22,4 +22,6 @@ import ProductController from "App/Controllers/Http/ProductController";
 
 Route.post("/api/v1/products/:product_id/update", (ctx) =>
   new ProductController().updateProduct(ctx)
-).as("update.product");
+)
+  .as("update.product")
+  .middleware(["sessionAuth"]);

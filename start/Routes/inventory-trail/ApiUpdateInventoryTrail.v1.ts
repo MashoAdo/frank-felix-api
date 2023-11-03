@@ -28,4 +28,6 @@ import InventoryTrailController from "App/Controllers/Http/InventoryTrailControl
 
 Route.post("/api/v1/inventory/:inventory_id/update", (ctx) =>
   new InventoryTrailController().updateInventoryTrail(ctx)
-).as("update.inventory.trail");
+)
+  .as("update.inventory.trail")
+  .middleware(["sessionAuth"]);
