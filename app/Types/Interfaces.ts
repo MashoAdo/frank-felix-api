@@ -2,7 +2,7 @@ export interface TaskInterface<T extends any[] = any[], R = void> {
   run: (...args: T) => R;
 }
 
-export interface ISignIn {
+export interface ISignInPayload {
   phone_number: number;
   password: string;
 }
@@ -50,3 +50,12 @@ export interface IUpdateInventoryTrail extends Partial<IInventoryTrail> {
 }
 
 export type TStockMovement = "In" | "Out";
+
+export interface IUser {
+  id: number;
+  first_name: string;
+  last_name: string;
+  phone_number: number;
+  created_at?: Date;
+  updated_at?: Date;
+}
