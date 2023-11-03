@@ -1,6 +1,7 @@
 //Auth
 import "./Auth/ApiSignIn.v1";
 import "./Auth/ApiSignUp.v1";
+import "./Auth/ApiSignOut.v1";
 
 //Products
 import "./product/ApiListProducts.v1";
