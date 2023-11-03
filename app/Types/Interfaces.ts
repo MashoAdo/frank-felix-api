@@ -44,9 +44,12 @@ export interface IInventoryTrailQueryParams {
   product_name: string;
 }
 
-export interface IUpdateInventoryTrail extends Partial<IInventoryTrail> {
+export interface IUpdateInventoryTrail {
   inventory_id: number;
   product_offer_id: number;
+  updated_qty: number;
+  updated_stock_movement: TStockMovement;
+  updated_notes: string;
 }
 
 export type TStockMovement = "In" | "Out";

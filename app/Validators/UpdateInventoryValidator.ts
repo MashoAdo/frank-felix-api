@@ -24,9 +24,9 @@ export default class UpdateInventoryTrailValidator {
    *    ```
    */
   public schema = schema.create({
-    qty: schema.number.optional(),
-    stock_movement: schema.enum.optional(["In", "Out"]),
-    notes: schema.string.optional(),
+    updated_qty: schema.number.optional(),
+    updated_stock_movement: schema.enum.optional(["In", "Out"]),
+    updated_notes: schema.string.optional(),
   });
 
   /**
@@ -41,7 +41,7 @@ export default class UpdateInventoryTrailValidator {
    *
    */
   public messages: CustomMessages = {
-    "qty.number": "Quantity must be a number",
-    "stock_movement.enum": "Stock movement is either In or Out",
+    "updated_qty.number": "Quantity must be a number",
+    "updated_stock_movement.enum": "Stock movement is either In or Out",
   };
 }
