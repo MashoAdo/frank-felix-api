@@ -21,4 +21,5 @@
     -Adonis Logger
         -Effective Logging
         -Logging with Adonis
-    -SQL order - .from .join .where* .select .groupBy .orderBy .paginate
+    -SQL execution order - .from .join .where* .select .groupBy .orderBy .paginate
+    -Lazy loading controllers during route definitions
