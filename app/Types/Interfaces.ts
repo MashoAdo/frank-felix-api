@@ -45,7 +45,7 @@ export interface IInventoryTrailQueryParams {
 }
 
 export interface IUpdateInventoryTrail {
-  inventory_id: number;
+  inventory_trail_id: number;
   product_offer_id: number;
   updated_qty: number;
   updated_stock_movement: TStockMovement;

@@ -1,7 +1,7 @@
 /**
  * @apiGroup           Inventory Trail
  * @apiName            Create Inventory trail
- * @api                {post} /api/v1/inventory/create
+ * @api                {post} /api/v1/inventory/:inventory_trail_id/create
  * @apiDescription     View products
  * @apiVersion         1.0.0
  * 
@@ -26,7 +26,7 @@
 import Route from "@ioc:Adonis/Core/Route";
 import InventoryTrailController from "App/Controllers/Http/InventoryTrailController";
 
-Route.post("/api/v1/inventory/:inventory_id/update", (ctx) =>
+Route.post("/api/v1/inventory/:inventory_trail_id/update", (ctx) =>
   new InventoryTrailController().updateInventoryTrail(ctx)
 )
   .as("update.inventory.trail")

@@ -15,13 +15,13 @@ import {
 
 class UpdateInventoryTask implements TaskInterface {
   public async run({
-    inventory_id,
+    inventory_trail_id,
     updated_qty,
     updated_notes,
     updated_stock_movement,
   }: IUpdateInventoryTrail) {
     await Database.transaction(async (trx: TransactionClientContract) => {
-      const inventory = await this.findInventoryOrThrow(inventory_id);
+      const inventory = await this.findInventoryOrThrow(inventory_trail_id);
 
       const productOffer = await this.findProductOfferOrThrow(
         inventory.product_offer_id

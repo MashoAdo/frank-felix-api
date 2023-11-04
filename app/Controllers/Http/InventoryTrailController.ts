@@ -38,9 +38,9 @@ export default class InventoryTrailController {
 
   public async updateInventoryTrail({ request }) {
     const payload = await request.validate(UpdateInventoryTrailValidator);
-    const { inventory_id } = request.params();
+    const { inventory_trail_id } = request.params();
 
-    await new UpdateInventoryTask().run({ ...payload, inventory_id });
+    await new UpdateInventoryTask().run({ ...payload, inventory_trail_id });
 
     return {
       success: true,
