@@ -1,7 +1,5 @@
 import HttpContext from "@ioc:Adonis/Core/HttpContext";
 import UserSession from "App/Models/UserSession";
-import { DateTime } from "luxon";
-import Constants from "../Constants/Constants";
 
 export const __getClientInfo = (ctx?: any) => {
   ctx = ctx || HttpContext.get();
@@ -22,21 +20,16 @@ export const __getAuthSession = async () => {
   const cookie = ctx?.request.cookie("session");
 
   if (!cookie) {
-    throw new Error("Unauthorized access");
+    throw new Error("No session cookie found in http request");
   }
 
-  const user_session = UserSession.query()
+  const user_session = await UserSession.query()
     .where("session_token", cookie)
-    .where(
-      "expires_at",
-      ">",
-      DateTime.now().toFormat(Constants.LUXON_SQL_FORMAT)
-    )
     .select(["user_id", "session_token", "expires_at"])
     .first();
 
   if (!user_session) {
-    throw new Error("Unauthorized access");
+    throw new Error("User session does not exists");
   }
 
   return user_session;

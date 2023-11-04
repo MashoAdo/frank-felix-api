@@ -1,12 +1,9 @@
 /**
  * @apiGroup           Product
- * @apiName            Create product
- * @api                {post} /api/v1/products/create
+ * @apiName            Update product
+ * @api                {post} /api/v1/products/:product_id/update
  * @apiDescription     View products
  * @apiVersion         1.0.0
- * 
- * 
- * @apiBody   {String}    name            product's name
  
  * @apiHeader          Accept application/json
  *
@@ -23,8 +20,8 @@
 import Route from "@ioc:Adonis/Core/Route";
 import ProductController from "App/Controllers/Http/ProductController";
 
-Route.post("/api/v1/products/create", (ctx) =>
-  new ProductController().createProduct(ctx)
+Route.post("/api/v1/products/:product_id/update", (ctx) =>
+  new ProductController().updateProduct(ctx)
 )
-  .as("create.product")
+  .as("update.product")
   .middleware(["sessionAuth"]);

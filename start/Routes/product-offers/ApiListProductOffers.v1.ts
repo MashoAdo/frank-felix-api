@@ -1,10 +1,10 @@
 /**
  * @apiGroup           Product
- * @apiName            View product
- * @api                {get} /api/v1/products/:product_id
- * @apiDescription     View products
+ * @apiName            List product offers
+ * @api                {get} /api/v1/product-offers
+ * @apiDescription     List products
  * @apiVersion         1.0.0
- 
+ *
  * @apiHeader          Accept application/json
  *
  * @apiSuccessExample  {json}    Success-Response:
@@ -18,10 +18,10 @@
  *
  **/
 import Route from "@ioc:Adonis/Core/Route";
-import ProductController from "App/Controllers/Http/ProductController";
+import ProductOfferController from "App/Controllers/Http/ProductOfferController";
 
-Route.get("/api/v1/products/:product_id", (ctx) =>
-  new ProductController().viewProduct(ctx)
+Route.get("/api/v1/product-offers", () =>
+  new ProductOfferController().listProductOffers()
 )
-  .as("view.product")
+  .as("product.offers")
   .middleware(["sessionAuth"]);

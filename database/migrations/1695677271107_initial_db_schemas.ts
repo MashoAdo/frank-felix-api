@@ -43,8 +43,12 @@ export default class extends BaseSchema {
         table.increments("id").primary();
         table.double("sale_price").unsigned().notNullable();
         table.integer("available_qty").notNullable();
-        table.string("color").notNullable();
-        table.string("img_url").nullable();
+        table
+          .integer("color_id")
+          .notNullable()
+          .references("id")
+          .inTable("product_color");
+        table.string("image_url").nullable();
         table.integer("product_id").references("id").inTable("product");
         table.timestamps();
       });
@@ -59,7 +63,12 @@ export default class extends BaseSchema {
           .inTable("product_offer")
           .notNullable();
         table.integer("qty").unsigned().notNullable();
-        table.enum("trail_direction", ["In,Out"]);
+        table
+          .enum("stock_movement", ["In", "Out"])
+          .comment(
+            "States whether the inventory is moving in or out of the store"
+          );
+        table.string("notes").nullable();
         table.timestamps();
       });
     }
@@ -76,6 +85,14 @@ export default class extends BaseSchema {
           );
         table.enum("transaction_form", ["Cash", "Bank", "Mpesa"]).notNullable();
         table.enum("trail_direction", ["In", "Out"]).notNullable();
+        table.timestamps();
+      });
+    }
+
+    if (!(await this.schema.hasTable("product_color"))) {
+      this.schema.createTable("product_color", (table) => {
+        table.increments("id").primary();
+        table.string("name", 255).notNullable();
         table.timestamps();
       });
     }
