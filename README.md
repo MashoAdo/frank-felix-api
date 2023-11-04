@@ -1,3 +1,3 @@
 # ABOUT
 
-This is an api for stock management application
+This is an api for a stock management application
