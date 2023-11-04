@@ -1,5 +1,6 @@
 import { SuccessCodes } from "App/Core/Constants/SuccessCodes";
 import CreateInventoryTrailTask from "App/Tasks/CreateInventoryTrailTask";
+import DeleteInventoryTrailTask from "App/Tasks/DeleteInventoryTrailTask";
 import ListInventoryTrailTask from "App/Tasks/ListInventoryTask";
 import UpdateInventoryTask from "App/Tasks/UpdateInventoryTask";
 import CreateInventoryTrailValidator from "App/Validators/CreateInventoryTrailValidator";
@@ -44,6 +45,18 @@ export default class InventoryTrailController {
     return {
       success: true,
       success_code: SuccessCodes.CREATE_INVENTORY_TRAIL,
+      success_message: "Inventory  movement was successfully updated",
+    };
+  }
+
+  public async deleteInventoryTrail({ request }) {
+    const { inventory_trail_id } = request.params();
+
+    await new DeleteInventoryTrailTask().run(inventory_trail_id);
+
+    return {
+      success: true,
+      success_code: SuccessCodes.DELETE_INVENTORY_TRAIL,
       success_message: "Inventory  movement was successfully updated",
     };
   }
