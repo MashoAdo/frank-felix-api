@@ -27,10 +27,10 @@
  *
  **/
 import Route from "@ioc:Adonis/Core/Route";
-import InventoryTrailController from "App/Controllers/Http/InventoryTrailController";
+import FinancialTrailController from "App/Controllers/Http/FinancialTrailController";
 
 Route.get("/api/v1/financial-trail", ({ request }) =>
-  new InventoryTrailController().listInventoryTrail({ request })
+  new FinancialTrailController().listFinancialTrail({ request })
 )
   .as("list.financial.trail")
   .middleware(["sessionAuth"]);
