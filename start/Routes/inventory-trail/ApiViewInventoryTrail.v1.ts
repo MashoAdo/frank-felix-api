@@ -24,8 +24,8 @@
 import Route from "@ioc:Adonis/Core/Route";
 import InventoryTrailController from "App/Controllers/Http/InventoryTrailController";
 
-Route.post("/api/v1/inventory/:inventory_trail_id/view", (ctx) =>
-  new InventoryTrailController().updateInventoryTrail(ctx)
+Route.get("/api/v1/inventory/:inventory_trail_id/view", (ctx) =>
+  new InventoryTrailController().viewInventoryTrail(ctx)
 )
-  .as("update.inventory.trail")
+  .as("view.inventory.trail")
   .middleware(["sessionAuth"]);
