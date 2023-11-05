@@ -32,5 +32,5 @@ import InventoryTrailController from "App/Controllers/Http/InventoryTrailControl
 Route.get("/api/v1/inventory", ({ request }) =>
   new InventoryTrailController().listInventoryTrail({ request })
 )
-  .as("inventory")
+  .as("list.inventory")
   .middleware(["sessionAuth"]);
