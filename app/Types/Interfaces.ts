@@ -62,3 +62,10 @@ export interface IUser {
   created_at?: Date;
   updated_at?: Date;
 }
+
+export interface IFinancialTrail {
+  amount: number;
+  usd_rate?: number;
+  trail_type: "Cash" | "Bank" | "Mpesa";
+  trail_direction: "In" | "Out";
+}

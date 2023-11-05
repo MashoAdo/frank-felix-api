@@ -24,10 +24,10 @@
  *
  **/
 import Route from "@ioc:Adonis/Core/Route";
-import InventoryTrailController from "App/Controllers/Http/InventoryTrailController";
+import FinancialTrailController from "App/Controllers/Http/FinancialTrailController";
 
 Route.post("/api/v1/financial-trail/create", (ctx) =>
-  new InventoryTrailController().createInventoryTrail(ctx)
+  new FinancialTrailController().createFinancialTrail(ctx)
 )
   .as("create.financial.trail")
   .middleware(["sessionAuth"]);
