@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
 import { BaseModel, column } from "@ioc:Adonis/Lucid/Orm";
-import { TStockMovement } from "App/Types/Interfaces";
+import { TStockMovement } from "App/Types/enums";
 
 export default class InventoryTrail extends BaseModel {
   public static table = "inventory_trail";

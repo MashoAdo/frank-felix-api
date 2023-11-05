@@ -1,4 +1,4 @@
-import { TStockMovement } from "App/Types/Interfaces";
+import { TStockMovement } from "App/Types/enums";
 
 export function __getProductQtyAfterMovement(
   product_offer_qty: number,

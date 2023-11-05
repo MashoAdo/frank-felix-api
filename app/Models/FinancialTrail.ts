@@ -1,4 +1,5 @@
 import { BaseModel, column } from "@ioc:Adonis/Lucid/Orm";
+import { TTrailDirection, TTrailType } from "App/Types/enums";
 import { DateTime } from "luxon";
 
 export default class FinancialTrail extends BaseModel {
@@ -14,10 +15,10 @@ export default class FinancialTrail extends BaseModel {
   public usd_rate: number;
 
   @column()
-  public trail_type: "Cash" | "Bank" | "Mpesa";
+  public trail_type: TTrailType;
 
   @column()
-  public trail_direction: "In" | "Out";
+  public trail_direction: TTrailDirection;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;
