@@ -12,36 +12,42 @@ import {
   TStockMovement,
   TaskInterface,
 } from "App/Types/Interfaces";
+import Logger from "@ioc:Adonis/Core/Logger";
 
 class UpdateInventoryTask implements TaskInterface {
   public async run({
-    inventory_id,
+    inventory_trail_id,
     updated_qty,
     updated_notes,
     updated_stock_movement,
   }: IUpdateInventoryTrail) {
-    await Database.transaction(async (trx: TransactionClientContract) => {
-      const inventory = await this.findInventoryOrThrow(inventory_id);
+    try {
+      await Database.transaction(async (trx: TransactionClientContract) => {
+        const inventory = await this.findInventoryOrThrow(inventory_trail_id);
 
-      const productOffer = await this.findProductOfferOrThrow(
-        inventory.product_offer_id
-      );
+        const productOffer = await this.findProductOfferOrThrow(
+          inventory.product_offer_id
+        );
 
-      const new_available_qty = this.calculateNewQtyAfterUpdate(
-        inventory,
-        updated_qty,
-        updated_stock_movement,
-        productOffer.available_qty
-      );
+        const new_available_qty = this.calculateNewQtyAfterUpdate(
+          inventory,
+          updated_qty,
+          updated_stock_movement,
+          productOffer.available_qty
+        );
 
-      await this.updateProductOffer(productOffer, new_available_qty, trx);
+        await this.updateProductOffer(productOffer, new_available_qty, trx);
 
-      await this.updateInventoryTrail(
-        inventory,
-        { updated_qty, updated_stock_movement, updated_notes },
-        trx
-      );
-    });
+        await this.updateInventoryTrail(
+          inventory,
+          { updated_qty, updated_stock_movement, updated_notes },
+          trx
+        );
+      });
+    } catch (error) {
+      Logger.error("Error occurred while updating inventory trail");
+      throw error;
+    }
   }
 
   private async findInventoryOrThrow(targetedInventoryId: number) {

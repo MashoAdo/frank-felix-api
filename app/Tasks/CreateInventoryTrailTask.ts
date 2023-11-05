@@ -42,9 +42,8 @@ export default class CreateInventoryTrailTask implements TaskInterface {
         );
       });
     } catch (error) {
-      Logger.info("Error occurred while creating inventory trails");
-      Logger.error(error);
-      throw new Error("Error occurred while creating inventory trails");
+      Logger.error("Error occurred while creating inventory trail");
+      throw error;
     }
   }
 

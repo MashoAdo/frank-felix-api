@@ -29,7 +29,7 @@ export default class DeleteInventoryTrailTask implements TaskInterface {
         `Failed when deleting Inventory Trail with ID ${inventory_trail_id}`,
         error
       );
-      throw new Error(error);
+      throw error;
     }
     return;
   }
