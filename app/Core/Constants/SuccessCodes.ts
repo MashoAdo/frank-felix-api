@@ -24,4 +24,11 @@ export class SuccessCodes {
   public static readonly CREATE_INVENTORY_TRAIL = 4002;
   public static readonly UPDATE_INVENTORY_TRAIL = 4003;
   public static readonly DELETE_INVENTORY_TRAIL = 4004;
+
+  //Financial Trail
+  public static readonly LIST_FINANCIAL_TRAIL = 5000;
+  public static readonly VIEW_FINANCIAL_TRAIL = 5001;
+  public static readonly CREATE_FINANCIAL_TRAIL = 5002;
+  public static readonly UPDATE_FINANCIAL_TRAIL = 5003;
+  public static readonly DELETE_FINANCIAL_TRAIL = 5004;
 }
