@@ -23,3 +23,10 @@ import "./inventory-trail/ApiViewInventoryTrail.v1";
 import "./inventory-trail/ApiCreateInventoryTrail.v1";
 import "./inventory-trail/ApiUpdateInventoryTrail.v1";
 import "./inventory-trail/ApiDeleteInventoryTrail.v1";
+
+//Finance Trail
+import "./financial-trail/ApiListFinancialTrail.v1";
+import "./financial-trail/ApiViewFinancialTrail.v1";
+import "./financial-trail/ApiCreateFinancialTrail.v1";
+import "./financial-trail/ApiUpdateFinancialTrail.v1";
+import "./financial-trail/ApiDeleteFinancialTrail.v1";
