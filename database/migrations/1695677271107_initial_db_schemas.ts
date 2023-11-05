@@ -44,12 +44,16 @@ export default class extends BaseSchema {
         table.double("sale_price").unsigned().notNullable();
         table.integer("available_qty").notNullable();
         table
+          .integer("product_id")
+          .notNullable()
+          .references("id")
+          .inTable("product");
+        table
           .integer("color_id")
           .notNullable()
           .references("id")
           .inTable("product_color");
         table.string("image_url").nullable();
-        table.integer("product_id").references("id").inTable("product");
         table.timestamps();
       });
     }
