@@ -21,9 +21,8 @@ export default class CreateProductOfferTask implements TaskInterface {
       return product_offer;
     } catch (error) {
       Logger.error("Failed creating Product offer");
-      Logger.info(error);
 
-      throw new Error("Failed creating Product offer");
+      throw new Error(error);
     }
   }
 }
