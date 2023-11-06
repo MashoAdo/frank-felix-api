@@ -79,3 +79,7 @@ export interface IFinancialTrailQueryParams {
   trail_direction: TTrailDirection;
   page: number;
 }
+
+export interface IUpdateFinancialTrail extends Partial<IFinancialTrail> {
+  financial_trail_id: number;
+}
