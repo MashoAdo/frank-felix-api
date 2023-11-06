@@ -21,10 +21,10 @@
  *
  **/
 import Route from "@ioc:Adonis/Core/Route";
-import InventoryTrailController from "App/Controllers/Http/InventoryTrailController";
+import FinancialTrailController from "App/Controllers/Http/FinancialTrailController";
 
 Route.post("/api/v1/financial-trail/:financial_trail_id/delete", (ctx) =>
-  new InventoryTrailController().deleteInventoryTrail(ctx)
+  new FinancialTrailController().deleteFinancialTrail(ctx)
 )
   .as("delete.financial.trail")
   .middleware(["sessionAuth"]);

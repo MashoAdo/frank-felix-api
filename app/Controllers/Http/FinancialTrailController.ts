@@ -1,5 +1,6 @@
 import { SuccessCodes } from "App/Core/Constants/SuccessCodes";
 import CreateFinancialTrailTask from "App/Tasks/CreateFinancialTrailTask";
+import DeleteFinancialTrailTask from "App/Tasks/DeleteFinancialTrailTask";
 import ListFinancialTrailTask from "App/Tasks/ListFinancialTrailTask";
 import CreateFinancialTrailValidator from "App/Validators/CreateFinancialTrailValidator";
 
@@ -33,6 +34,22 @@ export default class FinancialTrailController {
       success_code: SuccessCodes.CREATE_FINANCIAL_TRAIL,
       success_message: "Financial trail list",
       data: await new ListFinancialTrailTask().run(query),
+    };
+  }
+
+  /**
+   * deleteInventoryTrail
+   */
+
+  public async deleteFinancialTrail({ request }) {
+    const { financial_trail_id } = request.params();
+
+    await new DeleteFinancialTrailTask().run(financial_trail_id);
+
+    return {
+      success: true,
+      success_code: SuccessCodes.DELETE_FINANCIAL_TRAIL,
+      success_message: "Financial trail has been successfully deleted",
     };
   }
 }
