@@ -1,9 +1,5 @@
 import ProductOffer from "App/Models/ProductOffer";
-import {
-  IInventoryTrail,
-  TStockMovement,
-  TaskInterface,
-} from "App/Types/Interfaces";
+import { IInventoryTrail, TaskInterface } from "App/Types/Interfaces";
 import Database, {
   TransactionClientContract,
 } from "@ioc:Adonis/Lucid/Database";
@@ -11,6 +7,7 @@ import { DateTime } from "luxon";
 import Constants from "App/Core/Constants/Constants";
 import { __getProductQtyAfterMovement } from "App/Core/Helpers/InventoryHelper";
 import Logger from "@ioc:Adonis/Core/Logger";
+import { TStockMovement } from "App/Types/enums";
 
 export default class CreateInventoryTrailTask implements TaskInterface {
   public async run({

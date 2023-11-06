@@ -1,7 +1,7 @@
 /**
- * @apiGroup           Inventory Trail
- * @apiName            inventory
- * @api                {get} /api/v1/inventory
+ * @apiGroup           Financial Trail
+ * @apiName            list inventory
+ * @api                {get} /api/v1/financial-trail
  * @apiDescription     List Inventory Trail
  * @apiVersion         1.0.0
  *
@@ -27,10 +27,10 @@
  *
  **/
 import Route from "@ioc:Adonis/Core/Route";
-import InventoryTrailController from "App/Controllers/Http/InventoryTrailController";
+import FinancialTrailController from "App/Controllers/Http/FinancialTrailController";
 
-Route.get("/api/v1/inventory", ({ request }) =>
-  new InventoryTrailController().listInventoryTrail({ request })
+Route.get("/api/v1/financial-trail", ({ request }) =>
+  new FinancialTrailController().listFinancialTrail({ request })
 )
-  .as("list.inventory")
+  .as("list.financial.trail")
   .middleware(["sessionAuth"]);

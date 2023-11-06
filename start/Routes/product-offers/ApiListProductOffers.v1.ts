@@ -23,5 +23,5 @@ import ProductOfferController from "App/Controllers/Http/ProductOfferController"
 Route.get("/api/v1/product-offers", () =>
   new ProductOfferController().listProductOffers()
 )
-  .as("product.offers")
+  .as("list.product.offers")
   .middleware(["sessionAuth"]);

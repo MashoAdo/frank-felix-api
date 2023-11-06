@@ -84,10 +84,11 @@ export default class extends BaseSchema {
         table
           .integer("usd_rate")
           .unsigned()
+          .nullable()
           .comment(
             "this is the rate at which the usd was traded at, This value will not necessarily match the usd_rate from the bank"
           );
-        table.enum("transaction_form", ["Cash", "Bank", "Mpesa"]).notNullable();
+        table.enum("trail_type", ["Cash", "Bank", "Mpesa"]).notNullable();
         table.enum("trail_direction", ["In", "Out"]).notNullable();
         table.timestamps();
       });

@@ -1,24 +1,24 @@
-import { DateTime } from "luxon";
 import { BaseModel, column } from "@ioc:Adonis/Lucid/Orm";
-import { TStockMovement } from "App/Types/enums";
+import { TTrailDirection, TTrailType } from "App/Types/enums";
+import { DateTime } from "luxon";
 
-export default class InventoryTrail extends BaseModel {
-  public static table = "inventory_trail";
+export default class FinancialTrail extends BaseModel {
+  public static table = "financial_trail";
 
   @column({ isPrimary: true })
   public id: number;
 
   @column()
-  public product_offer_id: number;
+  public amount: number;
 
   @column()
-  public qty: number;
+  public usd_rate: number;
 
   @column()
-  public stock_movement: TStockMovement;
+  public trail_type: TTrailType;
 
   @column()
-  public notes: string;
+  public trail_direction: TTrailDirection;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;

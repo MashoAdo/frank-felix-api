@@ -21,5 +21,5 @@ import Route from "@ioc:Adonis/Core/Route";
 import ProductController from "App/Controllers/Http/ProductController";
 
 Route.get("/api/v1/products", () => new ProductController().listProducts())
-  .as("products")
+  .as("list.products")
   .middleware(["sessionAuth"]);

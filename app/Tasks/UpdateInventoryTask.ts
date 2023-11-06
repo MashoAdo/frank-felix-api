@@ -7,12 +7,9 @@ import {
 } from "App/Core/Helpers/InventoryHelper";
 import InventoryTrail from "App/Models/InventoryTrail";
 import ProductOffer from "App/Models/ProductOffer";
-import {
-  IUpdateInventoryTrail,
-  TStockMovement,
-  TaskInterface,
-} from "App/Types/Interfaces";
+import { IUpdateInventoryTrail, TaskInterface } from "App/Types/Interfaces";
 import Logger from "@ioc:Adonis/Core/Logger";
+import { TStockMovement } from "App/Types/enums";
 
 class UpdateInventoryTask implements TaskInterface {
   public async run({

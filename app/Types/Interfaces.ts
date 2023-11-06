@@ -1,3 +1,5 @@
+import { TStockMovement, TTrailDirection, TTrailType } from "./enums";
+
 export interface TaskInterface<T extends any[] = any[], R = void> {
   run: (...args: T) => R;
 }
@@ -52,8 +54,6 @@ export interface IUpdateInventoryTrail {
   updated_notes: string;
 }
 
-export type TStockMovement = "In" | "Out";
-
 export interface IUser {
   id: number;
   first_name: string;
@@ -61,4 +61,25 @@ export interface IUser {
   phone_number: number;
   created_at?: Date;
   updated_at?: Date;
+}
+
+export interface IFinancialTrail {
+  amount: number;
+  usd_rate?: number;
+  trail_type: "Cash" | "Bank" | "Mpesa";
+  trail_direction: "In" | "Out";
+}
+
+export interface IFinancialTrailQueryParams {
+  start_date: string;
+  end_date: string;
+  min_amount: number;
+  max_amount: number;
+  trail_type: TTrailType;
+  trail_direction: TTrailDirection;
+  page: number;
+}
+
+export interface IUpdateFinancialTrail extends Partial<IFinancialTrail> {
+  financial_trail_id: number;
 }
