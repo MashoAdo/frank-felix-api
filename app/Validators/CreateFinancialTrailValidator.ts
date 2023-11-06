@@ -44,9 +44,10 @@ export default class CreateFinancialTrailValidator {
   public messages: CustomMessages = {
     "amount.number.required": "Please add the amount",
     "amount.number.unsigned": "The amount should be a positive number",
-    "trail_type.required":
-      "Please select the type of transaction from these choices Cash,Bank or Mpesa",
-    "trail_direction.required":
-      "Please select the direction of the transaction from theses choices In or Out",
+    "usd_rate.number": "The USD rate must be a number",
+    "trail_type.enum":
+      "Please select the type of transaction from these choices {{ options.choices }}",
+    "trail_direction.enum":
+      "Please select the direction of the transaction from theses choices {{ options.choices }}",
   };
 }
