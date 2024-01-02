@@ -22,6 +22,9 @@ export default class ProductOffer extends BaseModel {
   @column()
   public product_id: number;
 
+  @column.dateTime()
+  public deleted_at: DateTime;
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;
 

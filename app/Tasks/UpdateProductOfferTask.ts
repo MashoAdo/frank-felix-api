@@ -9,7 +9,7 @@ export default class UpdateProductOfferTask implements TaskInterface {
       sale_price,
       available_qty,
       color_id,
-      image,
+      // image,
     } = payload;
 
     const product_offer_exists = ProductOffer.query()

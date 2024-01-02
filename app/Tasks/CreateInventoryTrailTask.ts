@@ -5,7 +5,7 @@ import Database, {
 } from "@ioc:Adonis/Lucid/Database";
 import { DateTime } from "luxon";
 import Constants from "App/Core/Constants/Constants";
-import { __getProductQtyAfterMovement } from "App/Core/Helpers/InventoryHelper";
+import { __getProductQtyAfterTrail } from "App/Core/Helpers/InventoryHelper";
 import Logger from "@ioc:Adonis/Core/Logger";
 import { TStockMovement } from "App/Types/enums";
 
@@ -59,7 +59,7 @@ export default class CreateInventoryTrailTask implements TaskInterface {
     }
 
     const { available_qty } = product_offer;
-    const new_available_qty = __getProductQtyAfterMovement(
+    const new_available_qty = __getProductQtyAfterTrail(
       available_qty,
       qty,
       stock_movement

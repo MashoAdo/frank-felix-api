@@ -11,8 +11,11 @@ export default class SignUpValidator {
     ]),
     first_name: schema.string(),
     last_name: schema.string(),
-    password: schema.string(),
+    password: schema.string([rules.required()]),
   });
 
-  public message: CustomMessages = {};
+  public messages: CustomMessages = {
+    "phone_number.unique":
+      "An account with the same phone number already exists",
+  };
 }

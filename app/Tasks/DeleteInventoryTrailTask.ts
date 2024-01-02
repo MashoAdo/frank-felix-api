@@ -5,7 +5,7 @@ import Database, {
   TransactionClientContract,
 } from "@ioc:Adonis/Lucid/Database";
 import ProductOffer from "App/Models/ProductOffer";
-import { __getProductQtyAfterMovement } from "App/Core/Helpers/InventoryHelper";
+import { __getProductQtyAfterTrail } from "App/Core/Helpers/InventoryHelper";
 
 export default class DeleteInventoryTrailTask implements TaskInterface {
   public async run(inventory_trail_id: number) {
@@ -15,7 +15,7 @@ export default class DeleteInventoryTrailTask implements TaskInterface {
         const inventory_trail = await this.deleteTrail(inventory_trail_id, trx);
 
         //reverse inventory effect on product offer
-        await this.reverseProductOfferQty(
+        await this.reverseTrailEffectOnProductQty(
           {
             product_offer_id: inventory_trail.product_offer_id,
             stock_movement: inventory_trail.stock_movement,
@@ -38,12 +38,7 @@ export default class DeleteInventoryTrailTask implements TaskInterface {
     inventory_trail_id: number,
     trx: TransactionClientContract
   ) {
-    const inventory_trail = await InventoryTrail.findOrFail(
-      inventory_trail_id,
-      {
-        client: trx,
-      }
-    );
+    const inventory_trail = await InventoryTrail.findOrFail(inventory_trail_id);
 
     inventory_trail.useTransaction(trx);
 
@@ -52,7 +47,7 @@ export default class DeleteInventoryTrailTask implements TaskInterface {
     return inventory_trail;
   }
 
-  private async reverseProductOfferQty(
+  private async reverseTrailEffectOnProductQty(
     inventory_trail: Partial<IInventoryTrail>,
     trx: TransactionClientContract
   ) {
@@ -63,20 +58,16 @@ export default class DeleteInventoryTrailTask implements TaskInterface {
       }
     );
 
-    //Reverse stock movement to undo effect of the trail being deleted on the product offer
-    const reversed_stock_movement =
-      inventory_trail.stock_movement === "Out" ? "In" : "Out";
-
-    const qty_after_delete_inventory = __getProductQtyAfterMovement(
+    const qty_before_inventory_trail = __getProductQtyAfterTrail(
       product_offer.available_qty,
-      //qty will always exist since we are deleting and existing trail
       inventory_trail.qty!,
-      reversed_stock_movement
+      //Reverse stock movement to undo effect of the trail being deleted on the product offer
+      inventory_trail.stock_movement === "Out" ? "In" : "Out"
     );
 
     product_offer.useTransaction(trx);
 
-    product_offer.available_qty = qty_after_delete_inventory;
+    product_offer.available_qty = qty_before_inventory_trail;
 
     await product_offer.save();
 

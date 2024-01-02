@@ -1,15 +1,25 @@
-import Product from "App/Models/Product";
+import Database from "@ioc:Adonis/Lucid/Database";
+import Constants from "App/Core/Constants/Constants";
 import { TaskInterface } from "App/Types/Interfaces";
+import { DateTime } from "luxon";
 
 export default class DeleteProductTask implements TaskInterface {
   public async run(product_id: number) {
-    const product = await Product.find(product_id);
+    const product = await Database.from("product")
+      .where("id", product_id)
+      .first();
 
     if (!product) {
       //TODO: throw from code
-      throw new Error("Product doesn't exist");
+      throw new Error("Product does not exist");
     }
 
-    await Product.query().where("id", product_id).delete();
+    if (product.deleted_at) throw new Error("Product already deleted");
+
+    await Database.from("product")
+      .where("id", product_id)
+      .update({
+        deleted_at: DateTime.now().toFormat(Constants.LUXON_SQL_FORMAT),
+      });
   }
 }

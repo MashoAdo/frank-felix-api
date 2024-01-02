@@ -1,6 +1,6 @@
 import { TStockMovement } from "App/Types/enums";
 
-export function __getProductQtyAfterMovement(
+export function __getProductQtyAfterTrail(
   product_offer_qty: number,
   qty_change: number,
   stock_movement: TStockMovement
@@ -19,22 +19,4 @@ export function __getProductQtyAfterMovement(
       : product_offer_qty - qty_change;
 
   return new_available_qty;
-}
-
-export function __getProductQtyBeforeTrail(
-  prev_stock_movement,
-  prev_qty_change: number,
-  current_qty: number
-) {
-  if (prev_stock_movement) return current_qty;
-
-  const reversed_stock_movement = prev_stock_movement === "Out" ? "In" : "Out";
-
-  const qty_before_trail = __getProductQtyAfterMovement(
-    current_qty,
-    prev_qty_change,
-    reversed_stock_movement
-  );
-
-  return qty_before_trail;
 }

@@ -7,16 +7,6 @@ import CreateUserSessionTask from "./CreateUserSessionTask";
 export default class SignUpTask implements TaskInterface {
   public async run(sign_up_info: ISignUp) {
     try {
-      const phone_number_exists = await User.query()
-        .where("phone_number", sign_up_info.phone_number)
-        .first();
-
-      if (phone_number_exists) {
-        throw new Error(
-          "Phone number already exists, Please use a different phone number"
-        );
-      }
-
       const password_hash = await Hash.make(sign_up_info.password);
 
       const user = await User.create({
