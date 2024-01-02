@@ -37,7 +37,7 @@ export default class ListInventoryTrailTask implements TaskInterface {
         query.where("it.product_offer_id", product_offer_id);
       })
       .if(product_name, (query) => {
-        query.whereLike("product.name", `%${product_name}%`);
+        query.whereLike("p.name", `%${product_name}%`);
       })
       .if(stock_movement, (query) => {
         __statusFilter(query, "it.stock_movement", stock_movement);

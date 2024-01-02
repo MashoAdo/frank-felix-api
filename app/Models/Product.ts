@@ -11,6 +11,9 @@ export default class Product extends BaseModel {
   @column()
   public name: string;
 
+  @column.dateTime()
+  public deleted_at: DateTime;
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;
 

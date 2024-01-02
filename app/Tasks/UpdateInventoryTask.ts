@@ -1,10 +1,7 @@
 import Database, {
   TransactionClientContract,
 } from "@ioc:Adonis/Lucid/Database";
-import {
-  __getProductQtyAfterMovement,
-  __getProductQtyBeforeTrail,
-} from "App/Core/Helpers/InventoryHelper";
+import { __getProductQtyAfterTrail } from "App/Core/Helpers/InventoryHelper";
 import InventoryTrail from "App/Models/InventoryTrail";
 import ProductOffer from "App/Models/ProductOffer";
 import { IUpdateInventoryTrail, TaskInterface } from "App/Types/Interfaces";
@@ -52,7 +49,7 @@ class UpdateInventoryTask implements TaskInterface {
       const inventory = await InventoryTrail.findOrFail(targetedInventoryId);
       return inventory;
     } catch (error) {
-      throw new Error("The targeted inventory record does not exist");
+      throw new Error("Inventory record does not exist");
     }
   }
 
@@ -61,7 +58,7 @@ class UpdateInventoryTask implements TaskInterface {
       const productOffer = await ProductOffer.findOrFail(productOfferId);
       return productOffer;
     } catch (error) {
-      throw new Error("The targeted product offer does not exist");
+      throw new Error("Product offer in the inventory trail does not exist");
     }
   }
 
@@ -75,13 +72,14 @@ class UpdateInventoryTask implements TaskInterface {
     const new_stock_movement =
       updated_stock_movement || inventory.stock_movement;
 
-    const qty_before_trail = __getProductQtyBeforeTrail(
-      inventory.stock_movement,
+    // Get the qty of the product offer before the trail initially occurred
+    const qty_before_trail = __getProductQtyAfterTrail(
+      current_product_offer_qty,
       inventory.qty,
-      current_product_offer_qty
+      inventory.stock_movement === "Out" ? "In" : "Out"
     );
 
-    const qty_after_update = __getProductQtyAfterMovement(
+    const qty_after_update = __getProductQtyAfterTrail(
       qty_before_trail,
       new_qty,
       new_stock_movement
