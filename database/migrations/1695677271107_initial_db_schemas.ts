@@ -34,6 +34,7 @@ export default class extends BaseSchema {
       this.schema.createTable("product", (table) => {
         table.increments("id").primary();
         table.string("name").unique().notNullable();
+        table.dateTime("deleted_at").nullable();
         table.timestamps();
       });
     }
@@ -54,6 +55,7 @@ export default class extends BaseSchema {
           .references("id")
           .inTable("product_color");
         table.string("image_url").nullable();
+        table.dateTime("deleted_at").nullable();
         table.timestamps();
       });
     }
@@ -73,6 +75,7 @@ export default class extends BaseSchema {
             "States whether the inventory is moving in or out of the store"
           );
         table.string("notes").nullable();
+        table.dateTime("deleted_at").nullable();
         table.timestamps();
       });
     }
@@ -90,6 +93,7 @@ export default class extends BaseSchema {
           );
         table.enum("trail_type", ["Cash", "Bank", "Mpesa"]).notNullable();
         table.enum("trail_direction", ["In", "Out"]).notNullable();
+        table.dateTime("deleted_at").nullable();
         table.timestamps();
       });
     }
@@ -98,6 +102,7 @@ export default class extends BaseSchema {
       this.schema.createTable("product_color", (table) => {
         table.increments("id").primary();
         table.string("name", 255).notNullable();
+        table.dateTime("deleted_at").nullable();
         table.timestamps();
       });
     }

@@ -19,7 +19,7 @@
 */
 import Route from "@ioc:Adonis/Core/Route";
 
-import "./Routes/routes";
+import "./routes/routes";
 
 Route.get("/", async () => {
   return "Server is up and running";

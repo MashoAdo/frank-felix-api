@@ -20,7 +20,9 @@ export const __getAuthSession = async () => {
   const cookie = ctx?.request.cookie("session");
 
   if (!cookie) {
-    throw new Error("No session cookie found in http request");
+    throw new Error(
+      "User is not logged in,please log in to continue using the applications"
+    );
   }
 
   const user_session = await UserSession.query()
