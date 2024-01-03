@@ -17,7 +17,7 @@ jobs:
     timeout-minutes: 5
     env:
       APP_KEY: ${{ secrets.FRANK_FELIX_APP_KEY }}
-      DRIVER_DISK: ${{ secrets.FRANK_FELIX_DRIVER_DISK }}
+      DRIVE_DISK: ${{ secrets.FRANK_FELIX_DRIVE_DISK }}
     steps:
       - uses: actions/checkout@v4
       # Cache node modules to avoid installation every single time the runner runs
