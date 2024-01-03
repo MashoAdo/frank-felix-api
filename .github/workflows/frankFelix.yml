@@ -18,6 +18,7 @@ jobs:
     env:
       APP_KEY: ${{ secrets.FRANK_FELIX_APP_KEY }}
       DRIVE_DISK: ${{ secrets.FRANK_FELIX_DRIVE_DISK }}
+      DB_CONNECTION: ${{ secrets.FRANK_FELIX_DB_CONNECTION }}
     steps:
       - uses: actions/checkout@v4
       # Cache node modules to avoid installation every single time the runner runs
