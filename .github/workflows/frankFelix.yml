@@ -15,15 +15,28 @@ jobs:
     runs-on: ubuntu-latest
 
     timeout-minutes: 5
+    env:
+      APP_KEY: ${{ secrets.FRANK_FELIX_APP_KEY }}
     steps:
       - uses: actions/checkout@v4
+      # Cache node modules to avoid installation every single time the runner runs
+      - uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+          # The key used to retrieve the cache ,
+          # hashFile function generates a unique key everytime the contents of the package-lock.json file changes
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-
+
       - uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: npm
 
       - name: Install dependancies
-        run: npm ci --prefer-offline -no-audit
+        run: npm ci --prefer-offline --no-audit
 
       - name: Create build
         run: npm run build
@@ -32,7 +45,7 @@ jobs:
         run: npm run test
 
   main_deploy:
-    if: ${{github.ref_name == 'main'}}
+    if: ${{ github.ref == 'refs/heads/main' }}
     needs: build
 
     name: Deploy to production
@@ -47,7 +60,7 @@ jobs:
           cache: npm
 
       - name: Install dependancies
-        run: npm ci --prefer-offline -no-audit
+        run: npm ci --prefer-offline --no-audit
 
       - name: "Build production"
         run: npm run build
