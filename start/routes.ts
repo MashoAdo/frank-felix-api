@@ -22,5 +22,5 @@ import Route from "@ioc:Adonis/Core/Route";
 import "./routes/routes";
 
 Route.get("/", async () => {
-  return "Server is up and running";
+  return "Frank felix api is up and running";
 });
