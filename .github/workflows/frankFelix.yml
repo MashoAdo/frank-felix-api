@@ -27,7 +27,7 @@ jobs:
           path: |
             node_modules
           # The key used to retrieve the cache ,
-          # hashFile function generates a unique key everytime the contents of the package-lock.json file changes
+          # The hashFile function generates a unique key everytime the contents of the package-lock.json file changes
           key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-build-
@@ -71,7 +71,7 @@ jobs:
         uses: burnett01/rsync-deployments@6.0.0
         with:
           switches: -avzr --delete
-          path: ./*
+          path: ./build
           remote_path: ${{secrets.FRANK_FELIX_PATH}}
           remote_host: ${{secrets.FRANK_FELIX_HOST}}
           remote_user: ${{secrets.FRANK_FELIX_USER}}
