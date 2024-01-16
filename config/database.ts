@@ -9,6 +9,8 @@ import Env from "@ioc:Adonis/Core/Env";
 import Application from "@ioc:Adonis/Core/Application";
 import type { DatabaseConfig } from "@ioc:Adonis/Lucid/Database";
 
+const isProduction = Env.get("NODE_ENV") === "production";
+
 const databaseConfig: DatabaseConfig = {
   /*
   |--------------------------------------------------------------------------
@@ -37,7 +39,9 @@ const databaseConfig: DatabaseConfig = {
     sqlite: {
       client: "sqlite",
       connection: {
-        filename: Application.tmpPath("db.sqlite3"),
+        filename: isProduction
+        ? Env.get('SQLITE3_EBS_PATH')|| "/home/ubuntu/tmp/db.sqlite3"
+        : Application.tmpPath("db.sqlite3"),
       },
       pool: {
         afterCreate: (conn, cb) => {
