@@ -11,8 +11,7 @@ export default class AppException extends Exception {
   public code;
 
   private constructor(code: number, args?: any, innerException?: Error) {
-    // const message = __trans(`api-errors.${code}`, args);
-    const message = 'dummy'
+    const message = args
     const status = AppException.lookup[code] ?? 417;
     super(message, status, "E_APP_EXCEPTION");
 
